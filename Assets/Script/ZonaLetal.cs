@@ -9,6 +9,7 @@ public class ZonaLetal : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Debug.Log("El jugador esta muerto");
+            UIController.instance.isOver();
         }
     }
 }

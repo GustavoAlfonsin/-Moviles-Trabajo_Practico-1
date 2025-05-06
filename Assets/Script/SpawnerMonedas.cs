@@ -34,17 +34,19 @@ public class SpawnerMonedas : MonoBehaviour
     private void Update()
     {
         celdasOcupadas.Clear();
-
-        if (Time.time >= tiempoSiguienteMoneda)
+        if (!UIController.instance.isGameOver())
         {
-            SpawMonedas();
-            tiempoSiguienteMoneda = Time.time + tiempoEntreMonedas;
-        }
+            if (Time.time >= tiempoSiguienteMoneda)
+            {
+                SpawMonedas();
+                tiempoSiguienteMoneda = Time.time + tiempoEntreMonedas;
+            }
 
-        if (Time.time >= tiempoSiguienteEnemigo)
-        {
-            SpawEnemigo();
-            tiempoSiguienteEnemigo = Time.time + tiempoEntreEnemigos;
+            if (Time.time >= tiempoSiguienteEnemigo)
+            {
+                SpawEnemigo();
+                tiempoSiguienteEnemigo = Time.time + tiempoEntreEnemigos;
+            }
         }
     }
 
