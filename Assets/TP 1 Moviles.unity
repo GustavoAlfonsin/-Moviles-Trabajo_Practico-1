@@ -899,8 +899,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monedaPrefab: {fileID: 7271013470393340510, guid: 549778b5d512a7246a076797c2050ff6, type: 3}
-  tiempoEntreSpawns: 5
-  posicionX: 20
+  tiempoEntreMonedas: 5
+  tiempoSiguienteMoneda: 3
   patrones:
   - nombre: Linea horizontal
     posicionesRelativas:
@@ -929,7 +929,10 @@ MonoBehaviour:
     - {x: 0, y: 1}
     - {x: 1, y: 0}
     - {x: 1, y: 1}
-  tiempoSiguienteSpawn: 1
+  prefabEnemigos: {fileID: 8117909744268198475, guid: 4af31a39aa3527941957612e44ff9483, type: 3}
+  espacioVertival: 1
+  espacioHorizontal: 1
+  filasVisibles: 7
 --- !u!4 &1601589094
 Transform:
   m_ObjectHideFlags: 0
