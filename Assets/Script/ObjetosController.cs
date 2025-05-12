@@ -11,7 +11,9 @@ public class ObjetosController : MonoBehaviour
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
 
-        if (transform.position.x < -25f || UIController.instance.isGameOver())
+        if (transform.position.x < -25f || 
+            UIController.instance.isGameOver() || 
+            UIController.instance.enBoost)
         {
             Destroy(gameObject);
         }

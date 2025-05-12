@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class UIController : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class UIController : MonoBehaviour
 
     public static UIController instance;
     private bool gameOver;
+
+    public Image barraEnergia;
+    public float tiempoLlenado = 10f, tiempoVaciado = 40f;
+
+    private float energiaMaxima = 100f;
+    private float velocidadNormal = 15f;
+    private float velocidadMaxima = 45f;
+
+    private float energia = 0f;
+    public bool enBoost = false;
     // Start is called before the first frame update
 
     private void Awake()
@@ -39,6 +50,8 @@ public class UIController : MonoBehaviour
         _txtPuntos.gameObject.SetActive(true);
         gameOverPanel.SetActive(false);
         gameOver = false;
+        enBoost = false;
+        energia = 0;
         _puntos = 0;
         _txtPuntos.text = $"{_puntos}";
         _distanciaRecorrida = 0;
@@ -50,8 +63,38 @@ public class UIController : MonoBehaviour
     {
         if (!gameOver)
         {
-            _distanciaRecorrida += 25 * Time.deltaTime;
-            _txtDistacia.text = _distanciaRecorrida.ToString() + " km";
+            float delta = Time.deltaTime;
+            if (enBoost)
+            {
+                energia -= tiempoVaciado * delta;
+                if (energia <= 0f)
+                {
+                    energia = 0;
+                    enBoost = false;
+                }
+                _distanciaRecorrida += velocidadMaxima * delta;
+                _txtDistacia.text = _distanciaRecorrida.ToString("F2") + " km";
+            }
+            else
+            {
+                energia += tiempoLlenado * delta;
+                energia = Mathf.Clamp(energia, 0f, energiaMaxima);
+
+                _distanciaRecorrida += velocidadNormal * delta;
+                _txtDistacia.text = _distanciaRecorrida.ToString("F2") + " km";
+
+                if (Input.acceleration.x > 0.3f && energia >= energiaMaxima)
+                {
+                    enBoost = true;
+                }
+            }
+            if (barraEnergia != null)
+            {
+                float porcentaje = energia / energiaMaxima;
+                barraEnergia.fillAmount = porcentaje;
+                barraEnergia.color = Color.Lerp(Color.red, Color.green, porcentaje);
+            }
+            
         }
     }
 
@@ -90,7 +133,10 @@ public class UIController : MonoBehaviour
         _txtPuntos.gameObject.SetActive(true);
         gameOverPanel.SetActive(false);
         _puntos = 0;
+        _txtPuntos.text = $"{_puntos}";
         _distanciaRecorrida = 0;
+        _txtDistacia.text = _distanciaRecorrida.ToString() + " km";
+        energia = 0;
     }
 
     public void IrAlMenu()
