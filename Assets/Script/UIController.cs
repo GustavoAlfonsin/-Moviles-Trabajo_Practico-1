@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -23,15 +24,14 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this) 
         {
-            instance = this;
-            DontDestroyOnLoad(instance);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(this);
-        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
@@ -80,5 +80,21 @@ public class UIController : MonoBehaviour
         gameOverPanel.SetActive(true);
         GODistancia.text = $"{_distanciaRecorrida} km";
         GOPuntos.text = $"Monedas: {_puntos}";
+    }
+
+    public void ReiniciarEscena()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOver = false;
+        _txtDistacia.gameObject.SetActive(true);
+        _txtPuntos.gameObject.SetActive(true);
+        gameOverPanel.SetActive(false);
+        _puntos = 0;
+        _distanciaRecorrida = 0;
+    }
+
+    public void IrAlMenu()
+    {
+        Debug.Log("Volver al menú");
     }
 }

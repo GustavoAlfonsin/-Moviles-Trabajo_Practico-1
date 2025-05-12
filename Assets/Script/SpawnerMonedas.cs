@@ -90,7 +90,7 @@ public class SpawnerMonedas : MonoBehaviour
                 (celda.y - filasVisibles/2)*espacioVertival
                 );
 
-            GameObject moneda = Instantiate(monedaPrefab, posicion, Quaternion.identity);
+            GameObject moneda = Instantiate(monedaPrefab, posicion, Quaternion.identity,this.transform);
         }
     }
 
@@ -114,7 +114,7 @@ public class SpawnerMonedas : MonoBehaviour
 
         Vector3 posicion = new Vector3(posicionX, (filaCentro - filasVisibles /2) * espacioVertival,0);
 
-        GameObject enemigo = Instantiate(prefabEnemigos, posicion, Quaternion.identity);
+        GameObject enemigo = Instantiate(prefabEnemigos, posicion, Quaternion.identity,this.transform);
     }
 
 }
