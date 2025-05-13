@@ -18,9 +18,17 @@ public class Scrolling : MonoBehaviour
 
     private void Update()
     {
-        float speed = UIController.instance.enBoost ? scrollFastSpeed : scrollNormalSpeed;
+        float speed;
+        if (UIController.instance != null)
+        {
+            speed = UIController.instance.enBoost ? scrollFastSpeed : scrollNormalSpeed;
+        }
+        else
+        {
+            speed = scrollNormalSpeed;
+        }
 
-        if (!UIController.instance.isGameOver())
+        if (UIController.instance == null || !UIController.instance.isGameOver())
         {
             newPos = Mathf.Repeat(Time.time * -speed,scrollOfset);
             transform.position = startPosition + Vector2.right * newPos;

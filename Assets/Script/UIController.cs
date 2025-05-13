@@ -23,13 +23,13 @@ public class UIController : MonoBehaviour
     private bool gameOver;
 
     public Image barraEnergia;
-    public float tiempoLlenado = 20f, tiempoVaciado = 50f;
+    public float tiempoLlenado = 20f, tiempoVaciado = 10000f;
 
     private float energiaMaxima = 100f;
-    private float velocidadNormal = 15f;
-    private float velocidadMaxima = 45f;
+    private float velocidadNormal = 5f;
+    private float velocidadMaxima = 30f;
 
-    private float energia = 0f;
+    public float energia = 0f;
     public bool enBoost = false;
     // Start is called before the first frame update
 
@@ -141,6 +141,6 @@ public class UIController : MonoBehaviour
 
     public void IrAlMenu()
     {
-        Debug.Log("Volver al menú");
+        SceneManager.LoadScene("Inicio");
     }
 }

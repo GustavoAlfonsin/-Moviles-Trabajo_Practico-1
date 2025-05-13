@@ -1451,8 +1451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a81fb6a46a099e4c8b322c2df20c603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollNormalSpeed: 8
-  scrollFastSpeed: 16
+  scrollNormalSpeed: 4
+  scrollFastSpeed: 24
   scrollOfset: 18
 --- !u!212 &1018200083
 SpriteRenderer:
@@ -1950,6 +1950,7 @@ MonoBehaviour:
   barraEnergia: {fileID: 1739456004}
   tiempoLlenado: 7.5
   tiempoVaciado: 5
+  energia: 0
   enBoost: 0
 --- !u!1 &1315886734
 GameObject:
@@ -2114,8 +2115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a81fb6a46a099e4c8b322c2df20c603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollNormalSpeed: 12
-  scrollFastSpeed: 24
+  scrollNormalSpeed: 5
+  scrollFastSpeed: 30
   scrollOfset: 18
 --- !u!212 &1318158869
 SpriteRenderer:
@@ -2806,7 +2807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollNormalSpeed: 1
-  scrollFastSpeed: 5
+  scrollFastSpeed: 6
   scrollOfset: 18
 --- !u!212 &2138648624
 SpriteRenderer:
