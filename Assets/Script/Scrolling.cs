@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Scrolling : MonoBehaviour
+{
+    public float scrollNormalSpeed;
+    public float scrollFastSpeed;
+    public float scrollOfset;
+
+    Vector2 startPosition;
+    float newPos;
+
+    private void Start()
+    {
+        startPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        float speed = UIController.instance.enBoost ? scrollFastSpeed : scrollNormalSpeed;
+
+        if (!UIController.instance.isGameOver())
+        {
+            newPos = Mathf.Repeat(Time.time * -speed,scrollOfset);
+            transform.position = startPosition + Vector2.right * newPos;
+        }
+    }
+}

@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     private bool gameOver;
 
     public Image barraEnergia;
-    public float tiempoLlenado = 10f, tiempoVaciado = 40f;
+    public float tiempoLlenado = 20f, tiempoVaciado = 50f;
 
     private float energiaMaxima = 100f;
     private float velocidadNormal = 15f;
