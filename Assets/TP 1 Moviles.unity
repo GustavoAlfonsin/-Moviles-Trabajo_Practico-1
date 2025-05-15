@@ -1948,8 +1948,6 @@ MonoBehaviour:
   GODistancia: {fileID: 60750734}
   GOPuntos: {fileID: 680304924}
   barraEnergia: {fileID: 1739456004}
-  tiempoLlenado: 7.5
-  tiempoVaciado: 5
   energia: 0
   enBoost: 0
 --- !u!1 &1315886734

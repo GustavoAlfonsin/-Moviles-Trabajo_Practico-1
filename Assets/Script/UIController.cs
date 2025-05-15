@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
+// Agregar Power Ups
+// 3 enemigos con comportamiento distintos
+// los extremos (techo y piso) tambien puedan matar al jugador 
 public class UIController : MonoBehaviour
 {
     [SerializeField] private int _puntos;
@@ -23,7 +26,7 @@ public class UIController : MonoBehaviour
     private bool gameOver;
 
     public Image barraEnergia;
-    public float tiempoLlenado = 20f, tiempoVaciado = 10000f;
+    private float tiempoLlenado = 20f, tiempoVaciado = 50f;
 
     private float energiaMaxima = 100f;
     private float velocidadNormal = 5f;
@@ -144,3 +147,5 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("Inicio");
     }
 }
+
+
