@@ -24,9 +24,11 @@ public class UIController : MonoBehaviour
 
     public static UIController instance;
     private bool gameOver;
-
+    
+    // Energía
     public Image barraEnergia;
-    private float tiempoLlenado = 20f, tiempoVaciado = 50f;
+    private float tiempoLlenado = 10f, tiempoVaciado = 20f;
+    public TextMeshProUGUI avisoTurbo;
 
     private float energiaMaxima = 100f;
     private float velocidadNormal = 5f;
@@ -34,6 +36,10 @@ public class UIController : MonoBehaviour
 
     public float energia = 0f;
     public bool enBoost = false;
+    public bool isStrong = false;
+    public bool useIman = false;
+    private float timerPowerUps = 0;
+    private float duracionPowerUps = 5f;
     // Start is called before the first frame update
 
     private void Awake()
@@ -45,7 +51,6 @@ public class UIController : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
@@ -66,38 +71,65 @@ public class UIController : MonoBehaviour
     {
         if (!gameOver)
         {
-            float delta = Time.deltaTime;
-            if (enBoost)
-            {
-                energia -= tiempoVaciado * delta;
-                if (energia <= 0f)
-                {
-                    energia = 0;
-                    enBoost = false;
-                }
-                _distanciaRecorrida += velocidadMaxima * delta;
-                _txtDistacia.text = _distanciaRecorrida.ToString("F2") + " km";
-            }
-            else
-            {
-                energia += tiempoLlenado * delta;
-                energia = Mathf.Clamp(energia, 0f, energiaMaxima);
+            ControlarEnergia();
+            controlarPowerUps();
+        }
+    }
 
-                _distanciaRecorrida += velocidadNormal * delta;
-                _txtDistacia.text = _distanciaRecorrida.ToString("F2") + " km";
-
-                if (Input.acceleration.x > 0.3f && energia >= energiaMaxima)
-                {
-                    enBoost = true;
-                }
-            }
-            if (barraEnergia != null)
+    private void ControlarEnergia()
+    {
+        float delta = Time.deltaTime;
+        if (enBoost)
+        {
+            energia -= tiempoVaciado * delta;
+            if (energia <= 0f)
             {
-                float porcentaje = energia / energiaMaxima;
-                barraEnergia.fillAmount = porcentaje;
-                barraEnergia.color = Color.Lerp(Color.red, Color.green, porcentaje);
+                energia = 0;
+                enBoost = false;
             }
-            
+            _distanciaRecorrida += velocidadMaxima * delta;
+            _txtDistacia.text = _distanciaRecorrida.ToString("F2") + " km";
+        }
+        else
+        {
+            energia += tiempoLlenado * delta;
+            energia = Mathf.Clamp(energia, 0f, energiaMaxima);
+
+            _distanciaRecorrida += velocidadNormal * delta;
+            _txtDistacia.text = _distanciaRecorrida.ToString("F2") + " km";
+
+            if (Input.acceleration.x > 0.3f && energia >= energiaMaxima)
+            {
+                enBoost = true;
+            }
+        }
+        if (barraEnergia != null)
+        {
+            float porcentaje = energia / energiaMaxima;
+            barraEnergia.fillAmount = porcentaje;
+            barraEnergia.color = Color.Lerp(Color.red, Color.green, porcentaje);
+            if (energia < energiaMaxima)
+            {
+                avisoTurbo.gameObject.SetActive(false);
+            }
+            else if (energia == energiaMaxima)
+            {
+                avisoTurbo.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void controlarPowerUps()
+    {
+        if (isStrong || useIman)
+        {
+            timerPowerUps += Time.deltaTime;
+            if (timerPowerUps >= duracionPowerUps) 
+            {
+                isStrong = false;
+                useIman = false;
+                timerPowerUps = 0;
+            }
         }
     }
 
@@ -131,15 +163,6 @@ public class UIController : MonoBehaviour
     public void ReiniciarEscena()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameOver = false;
-        _txtDistacia.gameObject.SetActive(true);
-        _txtPuntos.gameObject.SetActive(true);
-        gameOverPanel.SetActive(false);
-        _puntos = 0;
-        _txtPuntos.text = $"{_puntos}";
-        _distanciaRecorrida = 0;
-        _txtDistacia.text = _distanciaRecorrida.ToString() + " km";
-        energia = 0;
     }
 
     public void IrAlMenu()

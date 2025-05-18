@@ -1,10 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class MonedaController : ObjetosController
+public class MonedaController : MonoBehaviour
 {
-    private int valor = 1;
+    [SerializeField] private int valor = 1;
+
+    private void Update()
+    {
+        if (UIController.instance.useIman)
+        {
+            if (transform.position.x <= -6)
+            {
+                UIController.instance.ActualizarPuntaje(valor);
+                Destroy(gameObject);
+            }
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
