@@ -391,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9138068003430672654}
-  - component: {fileID: 888775338682044703}
+  - component: {fileID: 8420118129473071116}
   m_Layer: 3
   m_Name: Laser Horizontal
   m_TagString: Untagged
@@ -417,20 +417,27 @@ Transform:
   - {fileID: 364561140286909088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &888775338682044703
-MonoBehaviour:
+--- !u!95 &8420118129473071116
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5958409981719928796}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f72df762c0af6934cac4f6f5ca92e24f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animatorIzq: {fileID: 7687774884859366256}
-  _animatorDer: {fileID: 6007478528167393438}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcee96976fa098348a694de770672423, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8403135463214494620
 GameObject:
   m_ObjectHideFlags: 0

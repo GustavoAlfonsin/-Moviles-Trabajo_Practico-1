@@ -6,7 +6,7 @@ using UnityEngine;
 public class LasersController : MonoBehaviour
 {
     public GameObject[] _laseres;
-    private float _intervaloActivacion = 3f;
+    private float _intervaloActivacion = 20f;
     private float timer;
 
     private void Start()
@@ -48,7 +48,7 @@ public class LasersController : MonoBehaviour
         foreach (int i in elegidos)
         {
             _laseres[i].SetActive(true);
-            _laseres[i].GetComponent<LaserController>().ActivarLaser();
+            _laseres[i].GetComponent<Animator>().Play("CargarLaser");
         }
     }
 }
