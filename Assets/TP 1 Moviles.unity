@@ -3113,6 +3113,11 @@ MonoBehaviour:
   - {fileID: 5148350424382799021, guid: 07c5ab56a4251b649805664ac3d9fc11, type: 3}
   - {fileID: 3214795582822915986, guid: 13228ab5bcf2de34188b16343ee1e4a5, type: 3}
   _enemigos:
+  - {fileID: 775534982869701574, guid: ef267ff6d3c055a428e0b259145071bf, type: 3}
+  - {fileID: 8389444339199811280, guid: 7c0c16be6ceb8ea4a8a04c3dfd95adb6, type: 3}
+  - {fileID: 3450733744132514313, guid: 54bf59dfebb54654eb087df89acd7e70, type: 3}
+  - {fileID: 6647830844226804733, guid: fcaa96f433274f84ab5667ecb6cee525, type: 3}
+  - {fileID: 1393763772100019345, guid: b610c42b771d0fe49ab94ca2d89aa24b, type: 3}
   - {fileID: 1064152102684734236, guid: b96ee0b75ffb76248a84db5caff86d08, type: 3}
   _powerUps:
   - {fileID: 2679762472824947164, guid: 06425ac64c6ffda4c8dbd71d07341f0e, type: 3}

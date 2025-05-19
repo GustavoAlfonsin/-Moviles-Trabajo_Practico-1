@@ -24,7 +24,21 @@ public class EnemigoSaltarinController : ObjetosController
         Vector2 direccion = subiendo ? Vector2.up : Vector2.down;
         transform.Translate(direccion * verticalSpeed * Time.deltaTime);
 
-        VerificarColisionesVerticales();
+        verificarDireccionVertical();
+        //VerificarColisionesVerticales();
+    }
+
+    private void verificarDireccionVertical()
+    {
+        float y = transform.position.y;
+        if (subiendo && 4 - y <= distanciaDeteccion)
+        {
+            subiendo = false;
+        }
+        else if(!subiendo && MathF.Abs(-4 - y) <= distanciaDeteccion)
+        {
+            subiendo = true;
+        }
     }
 
     private void VerificarColisionesVerticales()
