@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjetosController : MonoBehaviour
 {
-    [SerializeField] private float speed = 3f;
+    [SerializeField] protected float speed = 3f;
 
     // Update is called once per frame
     protected virtual void Update()
