@@ -21,6 +21,7 @@ public class UIController : MonoBehaviour
     [Header("Panel de Game Over")]
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI GODistancia, GOPuntos;
+    [SerializeField] private TextMeshProUGUI PMDistancia, PMPuntos;
 
     [Header("Panel de pausa")]
     [SerializeField] private GameObject pausaPanel;
@@ -168,6 +169,11 @@ public class UIController : MonoBehaviour
         gameOverPanel.SetActive(true);
         GODistancia.text = $"{_distanciaRecorrida} km";
         GOPuntos.text = $"Monedas: {_puntos}";
+        Puntaje nuevoPuntaje = new Puntaje(_puntos, _distanciaRecorrida);
+        PuntajeManajer.instance.GuardarPuntaje(nuevoPuntaje);
+        Puntaje puntajeMaximo = PuntajeManajer.instance.CargarPuntaje();
+        PMDistancia.text = puntajeMaximo.distancia.ToString();
+        PMPuntos.text = puntajeMaximo.monedas.ToString();
     }
 
     public void ReiniciarEscena()
@@ -190,16 +196,22 @@ public class UIController : MonoBehaviour
 
     public void PausarJuego()
     {
-        pausaPanel.SetActive(true);
-        enPausa = true;
-        Time.timeScale = 0f;
+        if (!gameOver)
+        {
+            pausaPanel.SetActive(true);
+            enPausa = true;
+            Time.timeScale = 0f;
+        }
     }
 
     public void mostrarTutorial()
     {
-        tutorial.gameObject.SetActive(true);
-        enPausa = true;
-        Time.timeScale = 0f;
+        if (!gameOver)
+        {
+            tutorial.gameObject.SetActive(true);
+            enPausa = true;
+            Time.timeScale = 0f;
+        }
     }
 
     public void salirTutorial()
