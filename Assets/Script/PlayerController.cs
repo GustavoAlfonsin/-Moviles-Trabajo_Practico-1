@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.touchCount > 0 && !UIController.instance.isGameOver())
+        if (Input.touchCount > 0 && !UIController.instance.isGameOver() && !UIController.instance.enPausa)
         {
             Touch toque = Input.GetTouch(0);
             if (toque.phase == TouchPhase.Began || toque.phase == TouchPhase.Stationary)

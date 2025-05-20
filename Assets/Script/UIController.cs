@@ -22,6 +22,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI GODistancia, GOPuntos;
 
+    [Header("Panel de pausa")]
+    [SerializeField] private GameObject pausaPanel;
+    public bool enPausa;
+
+    [Header("Panel tutorial")]
+    [SerializeField] private Image tutorial;
+
     public static UIController instance;
     private bool gameOver;
     
@@ -57,8 +64,11 @@ public class UIController : MonoBehaviour
         _txtDistacia.gameObject.SetActive(true);
         _txtPuntos.gameObject.SetActive(true);
         gameOverPanel.SetActive(false);
+        pausaPanel.SetActive(false);
+        tutorial.gameObject.SetActive(false);
         gameOver = false;
         enBoost = false;
+        enPausa = false;
         energia = 0;
         _puntos = 0;
         _txtPuntos.text = $"{_puntos}";
@@ -168,6 +178,35 @@ public class UIController : MonoBehaviour
     public void IrAlMenu()
     {
         SceneManager.LoadScene("Inicio");
+        Time.timeScale = 1.0f;
+    }
+
+    public void ReanudarJuego()
+    {
+        pausaPanel.SetActive(false);
+        enPausa = false;
+        Time.timeScale = 1f;
+    }
+
+    public void PausarJuego()
+    {
+        pausaPanel.SetActive(true);
+        enPausa = true;
+        Time.timeScale = 0f;
+    }
+
+    public void mostrarTutorial()
+    {
+        tutorial.gameObject.SetActive(true);
+        enPausa = true;
+        Time.timeScale = 0f;
+    }
+
+    public void salirTutorial()
+    {
+        tutorial.gameObject.SetActive(false);
+        enPausa = false;
+        Time.timeScale = 1f;
     }
 }
 
